@@ -1,8 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f5;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --muted: #64748b;
+  --accent: #ea580c;
+  --accent-strong: #c2410c;
+  --accent-soft: #fff7ed;
+  --muted-soft: #f1f5f9;
+  --border: #e2e8f0;
+  --glow: rgba(234, 88, 12, 0.12);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --icon-color: #334155;
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0b;
+  --foreground: #f1f5f9;
+  --card: #18181b;
+  --muted: #a1a1aa;
+  --accent: #fb923c;
+  --accent-strong: #f97316;
+  --accent-soft: rgba(251, 146, 60, 0.15);
+  --muted-soft: #27272a;
+  --border: #3f3f46;
+  --glow: rgba(251, 146, 60, 0.2);
+  --text-primary: #fafafa;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --icon-color: #e4e4e7;
 }
 
 @theme inline {
@@ -12,15 +41,36 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Light mode subtle gradient */
+:root body {
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 237, 213, 0.5), transparent 36%),
+    radial-gradient(circle at 80% 8%, rgba(254, 215, 170, 0.3), transparent 30%),
+    var(--background);
+}
+
+/* Dark mode solid background */
+[data-theme="dark"] body {
+  background: var(--background);
+}
+
+a {
+  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.glass-surface {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .glass-surface {
+  background: linear-gradient(145deg, rgba(39, 39, 42, 0.9), rgba(24, 24, 27, 0.85));
 }

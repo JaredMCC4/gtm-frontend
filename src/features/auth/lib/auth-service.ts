@@ -1,0 +1,32 @@
+import { apiClient } from "@/lib/api-client";
+import type {
+  AuthResponse,
+  LoginRequest,
+  LogoutRequest,
+  RefreshTokenRequest,
+  RegisterRequest,
+} from "@/types/auth";
+
+export const authService = {
+  login: (payload: LoginRequest) =>
+    apiClient<AuthResponse>("/auth/login", {
+      method: "POST",
+      body: payload,
+    }),
+  register: (payload: RegisterRequest) =>
+    apiClient<AuthResponse>("/auth/register", {
+      method: "POST",
+      body: payload,
+    }),
+  refresh: (payload: RefreshTokenRequest) =>
+    apiClient<AuthResponse>("/auth/refresh", {
+      method: "POST",
+      body: payload,
+    }),
+  logout: (payload: LogoutRequest) =>
+    apiClient<void>("/auth/logout", {
+      method: "POST",
+      body: payload,
+      auth: true,
+    }),
+};
