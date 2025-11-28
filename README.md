@@ -43,7 +43,7 @@ pnpm dev
 ```
 3) El esqueleto usa datos mock. Conecta los contenedores (`features/*/containers`) a la API para traer datos reales (p. ej. `authService.login`, `GET /tareas`).
 
-## Siguientes pasos sugeridos
+## todo
 - Conectar `api-client` con endpoints reales y manejar refresh JWT.
 - Reemplazar storage de tokens por cookies HttpOnly/`cookies()` en rutas protegidas.
 - Añadir middleware de protección de rutas y manejo de roles.
