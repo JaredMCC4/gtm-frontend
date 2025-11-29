@@ -16,6 +16,15 @@ export interface AuthResponse {
   tokens: AuthTokens;
 }
 
+export type OAuthProvider = "GOOGLE" | "GITHUB";
+
+export interface SocialLoginRequest {
+  provider: OAuthProvider;
+  code?: string;
+  accessToken?: string;
+  redirectUri?: string;
+}
+
 export interface LoginRequest {
   email: string;
   password: string;

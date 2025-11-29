@@ -5,6 +5,7 @@ import type {
   LogoutRequest,
   RefreshTokenRequest,
   RegisterRequest,
+  SocialLoginRequest,
 } from "@/types/auth";
 
 export const authService = {
@@ -15,6 +16,11 @@ export const authService = {
     }),
   register: (payload: RegisterRequest) =>
     apiClient<AuthResponse>("/auth/register", {
+      method: "POST",
+      body: payload,
+    }),
+  oauthLogin: (payload: SocialLoginRequest) =>
+    apiClient<AuthResponse>("/auth/oauth/login", {
       method: "POST",
       body: payload,
     }),

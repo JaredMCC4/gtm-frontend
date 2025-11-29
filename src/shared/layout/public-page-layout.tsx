@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { routes } from "@/config/routes";
 import { cn } from "@/lib/cn";
 import { ThemeToggle } from "../components/theme-toggle";
@@ -20,6 +20,19 @@ export function PublicPageLayout({
   className,
 }: PublicPageLayoutProps) {
   const { t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 12);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems = [
     { label: t("home"), href: routes.public.home },
     { label: t("pricing"), href: "#precios" },
@@ -27,7 +40,12 @@ export function PublicPageLayout({
   ];
   return (
     <div className={cn("min-h-screen text-[var(--foreground)]", className)}>
-      <header className="border-b border-[var(--border)] bg-[var(--card)] backdrop-blur-xl shadow-sm">
+      <header
+        className={cn(
+          "sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--card)]/90 backdrop-blur-xl transition-all duration-300 ease-out",
+          scrolled ? "shadow-lg translate-y-0 opacity-100" : "shadow-sm translate-y-0 opacity-95",
+        )}
+      >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link
             href={routes.public.home}

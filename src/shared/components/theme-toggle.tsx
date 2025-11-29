@@ -1,6 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@/providers/theme-provider";
 import { cn } from "@/lib/cn";
 
@@ -10,7 +11,14 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted && theme === "dark";
+  const ariaLabel = isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
 
   return (
     <button
@@ -20,7 +28,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         "relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]",
         className,
       )}
-      aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+      aria-label={mounted ? ariaLabel : "Cambiar a modo oscuro"}
     >
       <Sun
         className={cn(

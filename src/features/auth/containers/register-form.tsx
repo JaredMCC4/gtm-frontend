@@ -7,9 +7,11 @@ import { routes } from "@/config/routes";
 import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
+import { AuthDivider } from "../components/auth-divider";
 import { RegisterFormValues, registerSchema } from "../lib/validators";
 import { AuthCard } from "../components/auth-card";
 import { authService } from "../lib/auth-service";
+import { OAuthButtons } from "../components/oauth-buttons";
 
 export function RegisterFormContainer() {
   const { setSession } = useAuth();
@@ -32,7 +34,7 @@ export function RegisterFormContainer() {
   const onSubmit = async (values: RegisterFormValues) => {
     setError(null);
     try {
-      const { confirmPassword, ...payload } = values;
+      const { confirmPassword: _confirmPassword, ...payload } = values;
       const response = await authService.register(payload);
       setSession({ user: response.user, tokens: response.tokens });
     } catch (err) {
@@ -50,75 +52,79 @@ export function RegisterFormContainer() {
       description="Regístrate para comenzar a organizar tus tareas."
       alternateCta={{ label: "¿Ya tienes cuenta?", href: routes.public.login }}
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="space-y-2">
-          <label
-            className="text-sm font-medium text-slate-800"
-            htmlFor="displayName"
-          >
-            Nombre visible
-          </label>
-          <Input id="displayName" {...register("displayName")} />
-          {errors.displayName ? (
-            <p className="text-sm text-red-600">{errors.displayName.message}</p>
-          ) : null}
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-800" htmlFor="email">
-            Correo
-          </label>
-          <Input id="email" type="email" autoComplete="email" {...register("email")} />
-          {errors.email ? (
-            <p className="text-sm text-red-600">{errors.email.message}</p>
-          ) : null}
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+      <div className="space-y-4">
+        <OAuthButtons onError={setError} />
+        <AuthDivider label="O crea tu cuenta con correo" />
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <label
               className="text-sm font-medium text-slate-800"
-              htmlFor="password"
+              htmlFor="displayName"
             >
-              Contraseña
+              Nombre visible
             </label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="new-password"
-              {...register("password")}
-            />
-            {errors.password ? (
-              <p className="text-sm text-red-600">{errors.password.message}</p>
+            <Input id="displayName" {...register("displayName")} />
+            {errors.displayName ? (
+              <p className="text-sm text-red-600">{errors.displayName.message}</p>
             ) : null}
           </div>
           <div className="space-y-2">
-            <label
-              className="text-sm font-medium text-slate-800"
-              htmlFor="confirmPassword"
-            >
-              Confirmar contraseña
+            <label className="text-sm font-medium text-slate-800" htmlFor="email">
+              Correo
             </label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              autoComplete="new-password"
-              {...register("confirmPassword")}
-            />
-            {errors.confirmPassword ? (
-              <p className="text-sm text-red-600">
-                {errors.confirmPassword.message}
-              </p>
+            <Input id="email" type="email" autoComplete="email" {...register("email")} />
+            {errors.email ? (
+              <p className="text-sm text-red-600">{errors.email.message}</p>
             ) : null}
           </div>
-        </div>
-        <p className="text-xs text-slate-600">
-          La contraseña debe tener mínimo 8 caracteres. Evita reutilizar claves
-          de otros servicios.
-        </p>
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Creando cuenta..." : "Registrarse"}
-        </Button>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium text-slate-800"
+                htmlFor="password"
+              >
+                Contraseña
+              </label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete="new-password"
+                {...register("password")}
+              />
+              {errors.password ? (
+                <p className="text-sm text-red-600">{errors.password.message}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium text-slate-800"
+                htmlFor="confirmPassword"
+              >
+                Confirmar contraseña
+              </label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                {...register("confirmPassword")}
+              />
+              {errors.confirmPassword ? (
+                <p className="text-sm text-red-600">
+                  {errors.confirmPassword.message}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <p className="text-xs text-slate-600">
+            La contraseña debe tener mínimo 8 caracteres. Evita reutilizar claves
+            de otros servicios.
+          </p>
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Creando cuenta..." : "Registrarse"}
+          </Button>
+        </form>
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
-      </form>
+      </div>
     </AuthCard>
   );
 }

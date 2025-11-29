@@ -36,21 +36,20 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
-
-  useEffect(() => {
-    const initialTheme = getPreferredTheme();
-    setThemeState(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
+  const [theme, setThemeState] = useState<Theme>(() =>
+    typeof window === "undefined" ? "light" : getPreferredTheme(),
+  );
 
   const setTheme = (next: Theme) => {
     setThemeState(next);
     localStorage.setItem(STORAGE_KEY, next);
-    applyTheme(next);
   };
 
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+
+  useEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
 
   const value = useMemo(
     () => ({

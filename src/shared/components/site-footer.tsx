@@ -18,7 +18,7 @@ export function SiteFooter() {
             {t("footerDesc")}
           </p>
           <p className="text-sm text-[var(--text-secondary)]">
-            Organiza tus tareas, recordatorios, etiquetas y archivos en un solo lugar para trabajar con claridad.
+            {t("footerSubline")}
           </p>
           <div className="h-1 w-20 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-strong)]" />
         </div>
@@ -41,7 +41,7 @@ export function SiteFooter() {
             GitHub
           </Link>
           <p className="text-xs text-[var(--text-muted)]">
-            Hecho con foco en seguridad, accesibilidad y rendimiento para equipos modernos.
+            {t("footerNote")}
           </p>
         </div>
       </div>

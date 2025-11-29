@@ -28,7 +28,7 @@ const translations: Record<Language, Messages> = {
     labels: "Etiquetas",
     profile: "Perfil",
     adminHealth: "Salud",
-    login: "Login",
+    login: "Ingresar",
     register: "Registro",
     themeLight: "Claro",
     themeDark: "Oscuro",
@@ -37,6 +37,8 @@ const translations: Record<Language, Messages> = {
     // Footer
     footerTitle: "Gestor de Tareas Moderno",
     footerDesc: "Aplicación web para organizar tareas, subtareas, etiquetas y recordatorios.",
+    footerSubline: "Organiza tus tareas, recordatorios, etiquetas y archivos en un solo lugar para trabajar con claridad.",
+    footerNote: "Hecho con foco en seguridad, accesibilidad y rendimiento para equipos modernos.",
     
     // Hero Section
     heroTitle: "Organiza tus estudios, entregas y exámenes en un solo lugar.",
@@ -132,7 +134,7 @@ const translations: Record<Language, Messages> = {
     planContributorFeature3: "Adjuntos ampliados",
     planContributorFeature4Coming: "Próximamente:",
     planContributorFeature4: "Integración con IA",
-    planContributorCta: "Contribuir con $4",
+    planContributorCta: "Contribuir",
     planContributorNote: "Tu apoyo ayuda a mantener GTM gratuito para todos.",
     
     // Contact Section
@@ -174,6 +176,8 @@ const translations: Record<Language, Messages> = {
     // Footer
     footerTitle: "Modern Task Manager",
     footerDesc: "Web app to manage tasks, subtasks, labels and reminders.",
+    footerSubline: "Organize your tasks, reminders, labels and files in one place to work clearly.",
+    footerNote: "Built with focus on security, accessibility and performance for modern teams.",
     
     // Hero Section
     heroTitle: "Organize your studies, assignments and exams in one place.",
@@ -269,7 +273,7 @@ const translations: Record<Language, Messages> = {
     planContributorFeature3: "Extended attachments",
     planContributorFeature4Coming: "Coming soon:",
     planContributorFeature4: "AI Integration",
-    planContributorCta: "Contribute $4",
+    planContributorCta: "Contribute",
     planContributorNote: "Your support helps keep GTM free for everyone.",
     
     // Contact Section

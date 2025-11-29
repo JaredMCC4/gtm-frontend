@@ -35,6 +35,8 @@ src
 ```
 NEXT_PUBLIC_API_BASE_URL=http://localhost:2828/api/v1
 NEXT_PUBLIC_APP_ENV=development
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=<client-id-google>
+NEXT_PUBLIC_GITHUB_CLIENT_ID=<client-id-github>
 ```
 2) Instala dependencias y levanta el proyecto:
 ```
@@ -49,3 +51,8 @@ pnpm dev
 - Añadir middleware de protección de rutas y manejo de roles.
 - Integrar formularios de creación/edición (tareas, etiquetas, recordatorios, adjuntos).
 - Añadir pruebas de componentes/servicios y hardening de seguridad (CSP, headers).
+
+## OAuth Google/GitHub
+- Configura en el backend los `redirect-uri` apuntando al frontend: `http://localhost:3000/auth/callback/google` y `/auth/callback/github` (presentes en `application-example.properties`).
+- Coloca los client IDs públicos en `.env.local` (`NEXT_PUBLIC_GOOGLE_CLIENT_ID`, `NEXT_PUBLIC_GITHUB_CLIENT_ID`).
+- El callback del frontend intercambia el `code` contra el backend en `/auth/oauth/login` y guarda el JWT en `sessionStorage`.

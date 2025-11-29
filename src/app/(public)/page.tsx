@@ -89,15 +89,15 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(234,88,12,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(234,88,12,0.05),transparent_30%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(251,146,60,0.1),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(251,146,60,0.06),transparent_30%)]" />
         <div className="relative grid items-center gap-10 lg:grid-cols-[1.05fr,0.95fr]">
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold leading-tight text-[var(--text-primary)] lg:text-5xl">
+            <h1 className="text-4xl font-bold leading-tight text-[var(--text-primary)] lg:text-5xl text-center">
               {t("heroTitle")}
             </h1>
-            <p className="max-w-3xl text-lg text-[var(--text-secondary)]">
+            <p className="max-w-3xl text-lg text-[var(--text-secondary)] text-center mx-auto">
               {t("heroDescription")}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link href={routes.public.register}>
-                <Button className="rounded-full px-6 py-3 text-base shadow-lg shadow-[var(--glow)]">
+                <Button className="rounded-full px-8 py-3 text-base shadow-lg shadow-[var(--glow)]">
                   {t("heroCtaPrimary")}
                 </Button>
               </Link>
@@ -352,7 +352,7 @@ export default function HomePage() {
                   {t("planContributorCta")}
                 </Button>
               </Link>
-              <p className="text-center text-xs text-[var(--text-muted)]">
+              <p className="pt-3 text-center text-xs text-[var(--text-muted)]">
                 {t("planContributorNote")}
               </p>
             </CardContent>
@@ -399,7 +399,7 @@ export default function HomePage() {
         <h3 className="mt-4 text-2xl font-bold text-[var(--text-primary)]">
           {t("ctaTitle")}
         </h3>
-        <p className="mx-auto mt-2 max-w-xl text-base text-[var(--text-secondary)]">
+        <p className="mx-auto mt-2 max-w-xl text-base text-[var(--text-secondary)] text-center">
           {t("ctaDescription")}
         </p>
         <div className="mt-5">
