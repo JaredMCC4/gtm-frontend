@@ -11,6 +11,9 @@ interface AuthCardProps {
     href: string;
   };
   children: ReactNode;
+  appName: string;
+  securityNote: string;
+  homeLabel: string;
 }
 
 export function AuthCard({
@@ -18,36 +21,39 @@ export function AuthCard({
   description,
   alternateCta,
   children,
+  appName,
+  securityNote,
+  homeLabel,
 }: AuthCardProps) {
   return (
-    <Card className="max-w-lg">
-      <CardHeader>
-        <div className="space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Gestor de Tareas Moderno
+    <Card className="w-full max-w-md shadow-lg sm:max-w-lg">
+      <CardHeader className="pb-6">
+        <div className="space-y-2 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">
+            {appName}
           </p>
-          <h1 className="text-xl font-semibold text-slate-900">{title}</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">{title}</h1>
           {description ? (
-            <p className="text-sm text-slate-600">{description}</p>
+            <p className="text-sm text-[var(--text-secondary)]">{description}</p>
           ) : null}
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">{children}</CardContent>
-      <CardFooter className="justify-between text-sm text-slate-600">
-        <span>Protege tus credenciales. Nunca compartas tu token.</span>
+      <CardContent className="space-y-6 px-6 sm:px-8">{children}</CardContent>
+      <CardFooter className="flex-col gap-2 text-center text-sm sm:flex-row sm:justify-between sm:text-left">
+        <span className="text-[var(--text-muted)]">{securityNote}</span>
         {alternateCta ? (
           <Link
             href={alternateCta.href}
-            className="font-medium text-slate-900 hover:underline"
+            className="font-semibold text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)] hover:underline"
           >
             {alternateCta.label}
           </Link>
         ) : (
           <Link
             href={routes.public.home}
-            className="font-medium text-slate-900 hover:underline"
+            className="font-semibold text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)] hover:underline"
           >
-            Inicio
+            {homeLabel}
           </Link>
         )}
       </CardFooter>

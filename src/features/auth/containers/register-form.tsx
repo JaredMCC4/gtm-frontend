@@ -1,21 +1,36 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { routes } from "@/config/routes";
 import { useAuth } from "@/providers/auth-provider";
+import { useLanguage } from "@/providers/language-provider";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
+import { PasswordInput } from "@/shared/ui/password-input";
 import { AuthDivider } from "../components/auth-divider";
-import { RegisterFormValues, registerSchema } from "../lib/validators";
+import { RegisterFormValues, createRegisterSchema } from "../lib/validators";
 import { AuthCard } from "../components/auth-card";
 import { authService } from "../lib/auth-service";
 import { OAuthButtons } from "../components/oauth-buttons";
 
 export function RegisterFormContainer() {
+  const { t } = useLanguage();
   const { setSession } = useAuth();
   const [error, setError] = useState<string | null>(null);
+
+  const registerSchema = useMemo(
+    () =>
+      createRegisterSchema({
+        emailInvalid: t("authValidationEmailInvalid"),
+        passwordMin: t("authValidationPasswordMin"),
+        usernameMin: t("authValidationUsernameMin"),
+        usernameMax: t("authValidationUsernameMax"),
+        passwordsMismatch: t("authValidationPasswordsMismatch"),
+      }),
+    [t]
+  );
 
   const {
     register,
@@ -41,89 +56,115 @@ export function RegisterFormContainer() {
       setError(
         err instanceof Error
           ? err.message
-          : "No se pudo crear la cuenta. Intenta de nuevo.",
+          : t("authRegisterError"),
       );
     }
   };
 
   return (
     <AuthCard
-      title="Crear cuenta"
-      description="Regístrate para comenzar a organizar tus tareas."
-      alternateCta={{ label: "¿Ya tienes cuenta?", href: routes.public.login }}
+      title={t("authRegisterTitle")}
+      description={t("authRegisterDescription")}
+      alternateCta={{ label: t("authAlreadyHaveAccount"), href: routes.public.login }}
+      appName={t("authAppName")}
+      securityNote={t("authSecurityNote")}
+      homeLabel={t("home")}
     >
-      <div className="space-y-4">
-        <OAuthButtons onError={setError} />
-        <AuthDivider label="O crea tu cuenta con correo" />
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="space-y-5">
+        <OAuthButtons 
+          onError={setError} 
+          labels={{
+            continueWithGoogle: t("authContinueWithGoogle"),
+            openingGoogle: t("authOpeningGoogle"),
+            continueWithGitHub: t("authContinueWithGitHub"),
+            openingGitHub: t("authOpeningGitHub"),
+            oauthError: t("authOauthError"),
+          }}
+        />
+        <AuthDivider label={t("authOrRegisterWith")} />
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="space-y-2">
             <label
-              className="text-sm font-medium text-slate-800"
+              className="block text-sm font-medium text-[var(--text-primary)]"
               htmlFor="displayName"
             >
-              Nombre visible
+              {t("authUsernameLabel")}
             </label>
-            <Input id="displayName" {...register("displayName")} />
+            <Input 
+              id="displayName" 
+              autoComplete="username"
+              placeholder={t("authUsernamePlaceholder")}
+              {...register("displayName")} 
+            />
             {errors.displayName ? (
-              <p className="text-sm text-red-600">{errors.displayName.message}</p>
+              <p className="text-sm font-medium text-red-500 dark:text-red-400">{errors.displayName.message}</p>
             ) : null}
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-800" htmlFor="email">
-              Correo
+            <label className="block text-sm font-medium text-[var(--text-primary)]" htmlFor="email">
+              {t("authEmailLabel")}
             </label>
-            <Input id="email" type="email" autoComplete="email" {...register("email")} />
+            <Input 
+              id="email" 
+              type="email" 
+              autoComplete="email" 
+              placeholder={t("authEmailPlaceholder")}
+              {...register("email")} 
+            />
             {errors.email ? (
-              <p className="text-sm text-red-600">{errors.email.message}</p>
+              <p className="text-sm font-medium text-red-500 dark:text-red-400">{errors.email.message}</p>
             ) : null}
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-800"
+                className="block text-sm font-medium text-[var(--text-primary)]"
                 htmlFor="password"
               >
-                Contraseña
+                {t("authPasswordLabel")}
               </label>
-              <Input
+              <PasswordInput
                 id="password"
-                type="password"
                 autoComplete="new-password"
+                placeholder={t("authPasswordPlaceholder")}
                 {...register("password")}
               />
               {errors.password ? (
-                <p className="text-sm text-red-600">{errors.password.message}</p>
+                <p className="text-sm font-medium text-red-500 dark:text-red-400">{errors.password.message}</p>
               ) : null}
             </div>
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-800"
+                className="block text-sm font-medium text-[var(--text-primary)]"
                 htmlFor="confirmPassword"
               >
-                Confirmar contraseña
+                {t("authConfirmPasswordLabel")}
               </label>
-              <Input
+              <PasswordInput
                 id="confirmPassword"
-                type="password"
                 autoComplete="new-password"
+                placeholder={t("authConfirmPasswordPlaceholder")}
                 {...register("confirmPassword")}
               />
               {errors.confirmPassword ? (
-                <p className="text-sm text-red-600">
+                <p className="text-sm font-medium text-red-500 dark:text-red-400">
                   {errors.confirmPassword.message}
                 </p>
               ) : null}
             </div>
           </div>
-          <p className="text-xs text-slate-600">
-            La contraseña debe tener mínimo 8 caracteres. Evita reutilizar claves
-            de otros servicios.
+          <p className="text-xs text-[var(--text-muted)]">
+            {t("authPasswordHint")}
           </p>
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Creando cuenta..." : "Registrarse"}
+          <Button type="submit" className="w-full py-3 text-base font-semibold" disabled={isSubmitting}>
+            {isSubmitting ? t("authRegisterLoading") : t("authRegisterButton")}
           </Button>
         </form>
-        {error ? <p className="text-sm text-red-600">{error}</p> : null}
+        {error ? (
+          <div className="rounded-md bg-red-50 p-3 dark:bg-red-900/20">
+            <p className="text-sm font-medium text-red-600 dark:text-red-400">{error}</p>
+          </div>
+        ) : null}
       </div>
     </AuthCard>
   );

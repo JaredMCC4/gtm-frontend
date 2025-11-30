@@ -152,6 +152,64 @@ const translations: Record<Language, Messages> = {
     ctaTitle: "Empieza a organizar tus estudios hoy",
     ctaDescription: "Crea tu cuenta en menos de 2 minutos, agrega tus materias como etiquetas y deja que GTM te ayude a no olvidar ninguna entrega.",
     ctaButton: "Empezar ahora",
+
+    // Auth - Login
+    authAppName: "Gestor de Tareas Moderno",
+    authSecurityNote: "Protege tus credenciales. Nunca compartas tu token.",
+    authLoginTitle: "Iniciar sesión",
+    authLoginDescription: "Accede con tus credenciales para gestionar tus tareas.",
+    authCreateAccount: "Crear cuenta",
+    authEmailLabel: "Correo electrónico",
+    authPasswordLabel: "Contraseña",
+    authLoginButton: "Entrar",
+    authLoginLoading: "Validando...",
+    authLoginError: "No se pudo iniciar sesión. Intenta de nuevo.",
+    authOrLoginWith: "O ingresa con tu correo",
+    authEmailPlaceholder: "tu@correo.com",
+    authPasswordPlaceholder: "Ingresa tu contraseña",
+
+    // Auth - Register
+    authRegisterTitle: "Crear cuenta",
+    authRegisterDescription: "Regístrate para comenzar a organizar tus tareas.",
+    authAlreadyHaveAccount: "¿Ya tienes cuenta?",
+    authUsernameLabel: "Nombre de usuario",
+    authUsernamePlaceholder: "Elige un nombre de usuario",
+    authConfirmPasswordLabel: "Confirmar contraseña",
+    authConfirmPasswordPlaceholder: "Repite tu contraseña",
+    authRegisterButton: "Registrarse",
+    authRegisterLoading: "Creando cuenta...",
+    authRegisterError: "No se pudo crear la cuenta. Intenta de nuevo.",
+    authPasswordHint: "La contraseña debe tener mínimo 8 caracteres. Evita reutilizar claves de otros servicios.",
+    authOrRegisterWith: "O crea tu cuenta con correo",
+
+    // Auth - Validation
+    authValidationEmailInvalid: "Ingresa un correo electrónico válido",
+    authValidationPasswordMin: "La contraseña debe tener al menos 8 caracteres",
+    authValidationUsernameMin: "El nombre de usuario debe tener al menos 2 caracteres",
+    authValidationUsernameMax: "El nombre de usuario no puede exceder 80 caracteres",
+    authValidationPasswordsMismatch: "Las contraseñas no coinciden",
+
+    // Auth - OAuth
+    authContinueWithGoogle: "Continuar con Google",
+    authOpeningGoogle: "Abriendo Google...",
+    authContinueWithGitHub: "Continuar con GitHub",
+    authOpeningGitHub: "Abriendo GitHub...",
+    authOauthError: "No se pudo iniciar el flujo OAuth. Intenta de nuevo.",
+
+    // Auth - Callback
+    authConnectingWith: "Conectando con",
+    authAuthError: "Error de autenticación",
+    authValidatingSession: "Estamos validando la sesión con el proveedor seleccionado.",
+    authBackToHome: "Volver al inicio",
+    authValidatingCredentials: "Validando credenciales...",
+    authProviderNotSupported: "Proveedor de autenticación no soportado.",
+    authProviderCancelled: "El proveedor canceló la autenticación.",
+    authNoAuthCode: "No se recibió el código de autorización. Intenta de nuevo.",
+    authStateMismatch: "El estado de la solicitud no coincide. Inicia el proceso otra vez.",
+    authSuccess: "Autenticación exitosa. Redirigiendo a tu panel...",
+    authCouldNotComplete: "No se pudo completar el login. Inténtalo nuevamente.",
+    authGoToLogin: "Ir al login",
+    authRetry: "Reintentar",
   },
   en: {
     // Header & Nav
@@ -291,6 +349,64 @@ const translations: Record<Language, Messages> = {
     ctaTitle: "Start organizing your studies today",
     ctaDescription: "Create your account in less than 2 minutes, add your subjects as labels and let GTM help you never miss a deadline.",
     ctaButton: "Start now",
+
+    // Auth - Login
+    authAppName: "Modern Task Manager",
+    authSecurityNote: "Protect your credentials. Never share your token.",
+    authLoginTitle: "Sign in",
+    authLoginDescription: "Sign in with your credentials to manage your tasks.",
+    authCreateAccount: "Create account",
+    authEmailLabel: "Email",
+    authPasswordLabel: "Password",
+    authLoginButton: "Sign in",
+    authLoginLoading: "Validating...",
+    authLoginError: "Could not sign in. Please try again.",
+    authOrLoginWith: "Or sign in with your email",
+    authEmailPlaceholder: "you@email.com",
+    authPasswordPlaceholder: "Enter your password",
+
+    // Auth - Register
+    authRegisterTitle: "Create account",
+    authRegisterDescription: "Sign up to start organizing your tasks.",
+    authAlreadyHaveAccount: "Already have an account?",
+    authUsernameLabel: "Username",
+    authUsernamePlaceholder: "Choose a username",
+    authConfirmPasswordLabel: "Confirm password",
+    authConfirmPasswordPlaceholder: "Repeat your password",
+    authRegisterButton: "Sign up",
+    authRegisterLoading: "Creating account...",
+    authRegisterError: "Could not create account. Please try again.",
+    authPasswordHint: "Password must be at least 8 characters. Avoid reusing passwords from other services.",
+    authOrRegisterWith: "Or create your account with email",
+
+    // Auth - Validation
+    authValidationEmailInvalid: "Please enter a valid email address",
+    authValidationPasswordMin: "Password must be at least 8 characters",
+    authValidationUsernameMin: "Username must be at least 2 characters",
+    authValidationUsernameMax: "Username cannot exceed 80 characters",
+    authValidationPasswordsMismatch: "Passwords do not match",
+
+    // Auth - OAuth
+    authContinueWithGoogle: "Continue with Google",
+    authOpeningGoogle: "Opening Google...",
+    authContinueWithGitHub: "Continue with GitHub",
+    authOpeningGitHub: "Opening GitHub...",
+    authOauthError: "Could not start OAuth flow. Please try again.",
+
+    // Auth - Callback
+    authConnectingWith: "Connecting with",
+    authAuthError: "Authentication error",
+    authValidatingSession: "We are validating the session with the selected provider.",
+    authBackToHome: "Back to home",
+    authValidatingCredentials: "Validating credentials...",
+    authProviderNotSupported: "Authentication provider not supported.",
+    authProviderCancelled: "The provider cancelled authentication.",
+    authNoAuthCode: "No authorization code received. Please try again.",
+    authStateMismatch: "Request state mismatch. Please start the process again.",
+    authSuccess: "Authentication successful. Redirecting to your dashboard...",
+    authCouldNotComplete: "Could not complete login. Please try again.",
+    authGoToLogin: "Go to login",
+    authRetry: "Retry",
   },
 };
 

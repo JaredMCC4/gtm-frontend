@@ -8,9 +8,16 @@ import type { OAuthProviderKey } from "../lib/oauth-providers";
 
 interface OAuthButtonsProps {
   onError?: (message: string | null) => void;
+  labels: {
+    continueWithGoogle: string;
+    openingGoogle: string;
+    continueWithGitHub: string;
+    openingGitHub: string;
+    oauthError: string;
+  };
 }
 
-export function OAuthButtons({ onError }: OAuthButtonsProps) {
+export function OAuthButtons({ onError, labels }: OAuthButtonsProps) {
   const [loadingProvider, setLoadingProvider] = useState<OAuthProviderKey | null>(null);
 
   const handleProviderClick = async (provider: OAuthProviderKey) => {
@@ -23,22 +30,22 @@ export function OAuthButtons({ onError }: OAuthButtonsProps) {
       onError?.(
         error instanceof Error
           ? error.message
-          : "No se pudo iniciar el flujo OAuth. Intenta de nuevo.",
+          : labels.oauthError,
       );
     }
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <OAuthButton
-        label={loadingProvider === "google" ? "Abriendo Google..." : "Continuar con Google"}
-        icon={loadingProvider === "google" ? <Loader2 className="h-4 w-4 animate-spin" /> : <GoogleIcon />}
+        label={loadingProvider === "google" ? labels.openingGoogle : labels.continueWithGoogle}
+        icon={loadingProvider === "google" ? <Loader2 className="h-5 w-5 animate-spin" /> : <GoogleIcon />}
         onClick={() => handleProviderClick("google")}
         disabled={Boolean(loadingProvider)}
       />
       <OAuthButton
-        label={loadingProvider === "github" ? "Abriendo GitHub..." : "Continuar con GitHub"}
-        icon={loadingProvider === "github" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Github className="h-4 w-4" />}
+        label={loadingProvider === "github" ? labels.openingGitHub : labels.continueWithGitHub}
+        icon={loadingProvider === "github" ? <Loader2 className="h-5 w-5 animate-spin" /> : <Github className="h-5 w-5" />}
         onClick={() => handleProviderClick("github")}
         disabled={Boolean(loadingProvider)}
       />
@@ -61,7 +68,7 @@ function OAuthButton({
     <Button
       type="button"
       variant="outline"
-      className="w-full justify-center"
+      className="w-full justify-center py-3"
       onClick={onClick}
       disabled={disabled}
     >
@@ -77,7 +84,7 @@ function GoogleIcon() {
       aria-hidden
       focusable="false"
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-5 w-5"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
