@@ -41,6 +41,7 @@ export function AuthCard({
       <CardContent className="space-y-6 px-6 sm:px-8">{children}</CardContent>
       <CardFooter className="flex-col gap-2 text-center text-sm sm:flex-row sm:justify-between sm:text-left">
         <span className="text-[var(--text-muted)]">{securityNote}</span>
+        {" "}
         {alternateCta ? (
           <Link
             href={alternateCta.href}

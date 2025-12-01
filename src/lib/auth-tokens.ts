@@ -6,9 +6,21 @@ const ACCESS_EXPIRES_AT_KEY = "gtm_access_expires_at";
 
 const isBrowser = typeof window !== "undefined";
 
+function setCookie(name: string, value: string, days: number = 7) {
+  if (!isBrowser) return;
+  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+function deleteCookie(name: string) {
+  if (!isBrowser) return;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
 function persistTokens(tokens: AuthTokens) {
   if (!isBrowser) return;
   sessionStorage.setItem(ACCESS_TOKEN_KEY, tokens.accessToken);
+  setCookie(ACCESS_TOKEN_KEY, tokens.accessToken);
   if (tokens.refreshToken) {
     sessionStorage.setItem(REFRESH_TOKEN_KEY, tokens.refreshToken);
   }
@@ -37,6 +49,7 @@ function clearTokens() {
   sessionStorage.removeItem(ACCESS_TOKEN_KEY);
   sessionStorage.removeItem(REFRESH_TOKEN_KEY);
   sessionStorage.removeItem(ACCESS_EXPIRES_AT_KEY);
+  deleteCookie(ACCESS_TOKEN_KEY);
 }
 
 export const authTokens = {

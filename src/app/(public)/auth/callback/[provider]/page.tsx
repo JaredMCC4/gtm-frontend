@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, Loader2, TriangleAlert } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { AuthCard } from "@/features/auth/components/auth-card";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/features/auth/lib/oauth-providers";
 import { authService } from "@/features/auth/lib/auth-service";
 import { routes } from "@/config/routes";
+import { translateApiError } from "@/lib/translate-api-error";
 import { Button } from "@/shared/ui/button";
 import { useAuth } from "@/providers/auth-provider";
 import { useLanguage } from "@/providers/language-provider";
@@ -36,6 +37,7 @@ export default function OAuthCallbackPage() {
 
   const [status, setStatus] = useState<Status>("processing");
   const [message, setMessage] = useState(t("authValidatingCredentials"));
+  const hasExchangedCode = useRef(false);
 
   useEffect(() => {
     if (!provider) {
@@ -71,6 +73,12 @@ export default function OAuthCallbackPage() {
       return;
     }
 
+    // Evitar intercambiar el código más de una vez (ej: React StrictMode)
+    if (hasExchangedCode.current) {
+      return;
+    }
+    hasExchangedCode.current = true;
+
     const redirectUri = getRedirectUri(provider);
     const exchangeCode = async () => {
       try {
@@ -89,7 +97,7 @@ export default function OAuthCallbackPage() {
         setStatus("error");
         setMessage(
           error instanceof Error
-            ? error.message
+            ? translateApiError(error.message, t)
             : t("authCouldNotComplete"),
         );
       }

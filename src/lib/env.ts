@@ -16,6 +16,10 @@ const envSchema = z.object({
     .string()
     .min(1, "Falta NEXT_PUBLIC_GITHUB_CLIENT_ID")
     .describe("Client ID público de GitHub OAuth"),
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: z
+    .string()
+    .min(1, "Falta NEXT_PUBLIC_TURNSTILE_SITE_KEY")
+    .describe("Site key de Cloudflare Turnstile"),
 });
 
 const parsed = envSchema.safeParse({
@@ -23,6 +27,7 @@ const parsed = envSchema.safeParse({
   NEXT_PUBLIC_APP_ENV: process.env.NEXT_PUBLIC_APP_ENV,
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
   NEXT_PUBLIC_GITHUB_CLIENT_ID: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
 });
 
 if (!parsed.success) {

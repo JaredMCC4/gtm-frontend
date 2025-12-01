@@ -33,7 +33,8 @@ export interface LoginRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
-  displayName: string;
+  nombreUsuario: string;
+  turnstileToken: string;
 }
 
 export interface RefreshTokenRequest {

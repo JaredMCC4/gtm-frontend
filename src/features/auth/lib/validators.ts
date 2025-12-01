@@ -7,6 +7,7 @@ export interface ValidationMessages {
   usernameMin: string;
   usernameMax: string;
   passwordsMismatch: string;
+  mustAcceptTos: string;
 }
 
 export const createLoginSchema = (messages: Pick<ValidationMessages, "emailInvalid" | "passwordMin">) =>
@@ -25,6 +26,9 @@ export const createRegisterSchema = (messages: ValidationMessages) =>
       email: z.string().email(messages.emailInvalid),
       password: z.string().min(8, messages.passwordMin),
       confirmPassword: z.string().min(8, messages.passwordMin),
+      acceptTos: z.boolean().refine((val) => val === true, {
+        message: messages.mustAcceptTos,
+      }),
     })
     .refine((values) => values.password === values.confirmPassword, {
       message: messages.passwordsMismatch,
@@ -43,7 +47,14 @@ export const registerSchema = createRegisterSchema({
   usernameMin: "Mínimo 2 caracteres",
   usernameMax: "Máximo 80 caracteres",
   passwordsMismatch: "Las contraseñas no coinciden",
+  mustAcceptTos: "Debes aceptar los términos de servicio",
 });
 
 export type LoginFormValues = LoginRequest;
-export type RegisterFormValues = RegisterRequest & { confirmPassword: string };
+export type RegisterFormValues = {
+  displayName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  acceptTos: boolean;
+};

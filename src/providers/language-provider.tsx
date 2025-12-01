@@ -155,7 +155,7 @@ const translations: Record<Language, Messages> = {
 
     // Auth - Login
     authAppName: "Gestor de Tareas Moderno",
-    authSecurityNote: "Protege tus credenciales. Nunca compartas tu token.",
+    authSecurityNote: "Tu información está protegida. Nunca compartiremos tus datos.",
     authLoginTitle: "Iniciar sesión",
     authLoginDescription: "Accede con tus credenciales para gestionar tus tareas.",
     authCreateAccount: "Crear cuenta",
@@ -167,6 +167,15 @@ const translations: Record<Language, Messages> = {
     authOrLoginWith: "O ingresa con tu correo",
     authEmailPlaceholder: "tu@correo.com",
     authPasswordPlaceholder: "Ingresa tu contraseña",
+    authForgotPassword: "¿Olvidaste tu contraseña?",
+
+    // Auth - Forgot Password
+    authForgotPasswordTitle: "Recuperar contraseña",
+    authForgotPasswordDescription: "Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.",
+    authForgotPasswordButton: "Enviar instrucciones",
+    authForgotPasswordLoading: "Enviando...",
+    authForgotPasswordSuccess: "Si existe una cuenta con ese correo, recibirás instrucciones para restablecer tu contraseña.",
+    authBackToLogin: "Volver al inicio de sesión",
 
     // Auth - Register
     authRegisterTitle: "Crear cuenta",
@@ -196,6 +205,16 @@ const translations: Record<Language, Messages> = {
     authOpeningGitHub: "Abriendo GitHub...",
     authOauthError: "No se pudo iniciar el flujo OAuth. Intenta de nuevo.",
 
+    // Auth - Backend errors
+    authErrorEmailExists: "Ya existe un usuario con el email proporcionado.",
+    authErrorInvalidCredentials: "Credenciales inválidas.",
+    authErrorUserInactive: "El usuario no está activo.",
+    authErrorInvalidToken: "Token inválido.",
+    authErrorRefreshTokenInvalid: "El refresh token es inválido.",
+    authErrorRefreshTokenExpired: "El refresh token ha sido revocado o expirado.",
+    authErrorUserDeactivated: "El usuario está desactivado.",
+    authErrorNoAuthCodeOrToken: "No se recibió authorization code ni access token.",
+
     // Auth - Callback
     authConnectingWith: "Conectando con",
     authAuthError: "Error de autenticación",
@@ -210,6 +229,38 @@ const translations: Record<Language, Messages> = {
     authCouldNotComplete: "No se pudo completar el login. Inténtalo nuevamente.",
     authGoToLogin: "Ir al login",
     authRetry: "Reintentar",
+
+    // Auth - TOS Acceptance
+    authAcceptTos: "Acepto los",
+    authTermsOfService: "Términos de Servicio",
+    authMustAcceptTos: "Debes aceptar los Términos de Servicio para continuar.",
+
+    // Terms of Service Page
+    tosTitle: "Términos de Servicio",
+    tosLastUpdated: "Última actualización",
+    tosBackToHome: "Volver al inicio",
+    tosIntroTitle: "1. Introducción",
+    tosIntroText: "Bienvenido a GTM (Gestor de Tareas Moderno). Estos Términos de Servicio regulan el uso de nuestra plataforma. Al crear una cuenta o utilizar nuestros servicios, aceptas cumplir con estos términos.",
+    tosAcceptanceTitle: "2. Aceptación de los Términos",
+    tosAcceptanceText: "Al acceder o utilizar GTM, confirmas que has leído, comprendido y aceptado estos Términos de Servicio. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar el servicio.",
+    tosServiceUseTitle: "3. Uso del Servicio",
+    tosServiceUseText: "GTM es una herramienta de productividad diseñada para ayudarte a organizar tareas, recordatorios y proyectos. Al usar el servicio, te comprometes a:",
+    tosServiceUseItem1: "Proporcionar información veraz y actualizada durante el registro.",
+    tosServiceUseItem2: "Mantener la confidencialidad de tus credenciales de acceso.",
+    tosServiceUseItem3: "No utilizar el servicio para fines ilegales o no autorizados.",
+    tosServiceUseItem4: "No intentar acceder a cuentas de otros usuarios sin autorización.",
+    tosAccountTitle: "4. Cuenta de Usuario",
+    tosAccountText: "Eres responsable de todas las actividades que ocurran bajo tu cuenta. Debes notificarnos inmediatamente si detectas cualquier uso no autorizado. Nos reservamos el derecho de suspender o eliminar cuentas que violen estos términos.",
+    tosPrivacyTitle: "5. Privacidad y Datos",
+    tosPrivacyText: "Respetamos tu privacidad. Los datos que almacenas en GTM son tuyos. No vendemos ni compartimos tu información personal con terceros. Utilizamos medidas de seguridad estándar de la industria para proteger tus datos.",
+    tosIntellectualTitle: "6. Propiedad Intelectual",
+    tosIntellectualText: "GTM es un proyecto de código abierto; su código y funcionalidad están disponibles públicamente. La base de datos de usuarios (datos personales y credenciales) no es parte del código abierto y se mantiene privada. El contenido que creas y almacenas en la plataforma sigue siendo de tu propiedad.",
+    tosLiabilityTitle: "7. Limitación de Responsabilidad",
+    tosLiabilityText: "GTM se proporciona \"tal cual\" sin garantías de ningún tipo. No seremos responsables por pérdidas de datos, interrupciones del servicio o daños indirectos derivados del uso de la plataforma.",
+    tosModificationsTitle: "8. Modificaciones",
+    tosModificationsText: "Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación. El uso continuado del servicio constituye la aceptación de los términos modificados.",
+    tosContactTitle: "9. Contacto",
+    tosContactText: "Si tienes preguntas sobre estos Términos de Servicio, puedes contactarnos en:",
   },
   en: {
     // Header & Nav
@@ -352,7 +403,7 @@ const translations: Record<Language, Messages> = {
 
     // Auth - Login
     authAppName: "Modern Task Manager",
-    authSecurityNote: "Protect your credentials. Never share your token.",
+    authSecurityNote: "Your information is protected. We never share your data.",
     authLoginTitle: "Sign in",
     authLoginDescription: "Sign in with your credentials to manage your tasks.",
     authCreateAccount: "Create account",
@@ -364,6 +415,15 @@ const translations: Record<Language, Messages> = {
     authOrLoginWith: "Or sign in with your email",
     authEmailPlaceholder: "you@email.com",
     authPasswordPlaceholder: "Enter your password",
+    authForgotPassword: "Forgot your password?",
+
+    // Auth - Forgot Password
+    authForgotPasswordTitle: "Reset password",
+    authForgotPasswordDescription: "Enter your email address and we'll send you instructions to reset your password.",
+    authForgotPasswordButton: "Send instructions",
+    authForgotPasswordLoading: "Sending...",
+    authForgotPasswordSuccess: "If an account exists with that email, you will receive instructions to reset your password.",
+    authBackToLogin: "Back to login",
 
     // Auth - Register
     authRegisterTitle: "Create account",
@@ -393,6 +453,16 @@ const translations: Record<Language, Messages> = {
     authOpeningGitHub: "Opening GitHub...",
     authOauthError: "Could not start OAuth flow. Please try again.",
 
+    // Auth - Backend errors
+    authErrorEmailExists: "A user with this email already exists.",
+    authErrorInvalidCredentials: "Invalid credentials.",
+    authErrorUserInactive: "User is not active.",
+    authErrorInvalidToken: "Invalid token.",
+    authErrorRefreshTokenInvalid: "Refresh token is invalid.",
+    authErrorRefreshTokenExpired: "Refresh token has been revoked or expired.",
+    authErrorUserDeactivated: "User is deactivated.",
+    authErrorNoAuthCodeOrToken: "No authorization code or access token received.",
+
     // Auth - Callback
     authConnectingWith: "Connecting with",
     authAuthError: "Authentication error",
@@ -407,6 +477,38 @@ const translations: Record<Language, Messages> = {
     authCouldNotComplete: "Could not complete login. Please try again.",
     authGoToLogin: "Go to login",
     authRetry: "Retry",
+
+    // Auth - TOS Acceptance
+    authAcceptTos: "I agree to the",
+    authTermsOfService: "Terms of Service",
+    authMustAcceptTos: "You must accept the Terms of Service to continue.",
+
+    // Terms of Service Page
+    tosTitle: "Terms of Service",
+    tosLastUpdated: "Last updated",
+    tosBackToHome: "Back to home",
+    tosIntroTitle: "1. Introduction",
+    tosIntroText: "Welcome to GTM (Modern Task Manager). These Terms of Service govern your use of our platform. By creating an account or using our services, you agree to comply with these terms.",
+    tosAcceptanceTitle: "2. Acceptance of Terms",
+    tosAcceptanceText: "By accessing or using GTM, you confirm that you have read, understood, and agreed to these Terms of Service. If you do not agree with any part of these terms, you should not use the service.",
+    tosServiceUseTitle: "3. Use of Service",
+    tosServiceUseText: "GTM is a productivity tool designed to help you organize tasks, reminders, and projects. By using the service, you agree to:",
+    tosServiceUseItem1: "Provide accurate and up-to-date information during registration.",
+    tosServiceUseItem2: "Maintain the confidentiality of your login credentials.",
+    tosServiceUseItem3: "Not use the service for illegal or unauthorized purposes.",
+    tosServiceUseItem4: "Not attempt to access other users' accounts without authorization.",
+    tosAccountTitle: "4. User Account",
+    tosAccountText: "You are responsible for all activities that occur under your account. You must notify us immediately if you detect any unauthorized use. We reserve the right to suspend or delete accounts that violate these terms.",
+    tosPrivacyTitle: "5. Privacy and Data",
+    tosPrivacyText: "We respect your privacy. The data you store in GTM belongs to you. We do not sell or share your personal information with third parties. We use industry-standard security measures to protect your data.",
+    tosIntellectualTitle: "6. Intellectual Property",
+    tosIntellectualText: "GTM is an open source project; its code and functionality are available publicly. The user database (personal data and credentials) is not part of the open source code and remains private. The content you create and store on the platform remains your property.",
+    tosLiabilityTitle: "7. Limitation of Liability",
+    tosLiabilityText: "GTM is provided \"as is\" without warranties of any kind. We will not be liable for data loss, service interruptions, or indirect damages arising from the use of the platform.",
+    tosModificationsTitle: "8. Modifications",
+    tosModificationsText: "We reserve the right to modify these terms at any time. Modifications will take effect immediately upon publication. Continued use of the service constitutes acceptance of the modified terms.",
+    tosContactTitle: "9. Contact",
+    tosContactText: "If you have questions about these Terms of Service, you can contact us at:",
   },
 };
 

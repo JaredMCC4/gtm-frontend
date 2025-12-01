@@ -3,6 +3,8 @@ export const routes = {
     home: "/",
     login: "/auth/login",
     register: "/auth/registro",
+    forgotPassword: "/auth/recuperar-contrasena",
+    terms: "/terminos",
     oauthCallback: (provider: "google" | "github") => `/auth/callback/${provider}`,
   },
   protected: {

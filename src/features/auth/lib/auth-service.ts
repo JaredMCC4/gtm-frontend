@@ -15,7 +15,7 @@ export const authService = {
       body: payload,
     }),
   register: (payload: RegisterRequest) =>
-    apiClient<AuthResponse>("/auth/register", {
+    apiClient<AuthResponse>("/auth/registro", {
       method: "POST",
       body: payload,
     }),

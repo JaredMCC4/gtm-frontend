@@ -3,7 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 import { routes } from "@/config/routes";
+import { translateApiError } from "@/lib/translate-api-error";
 import { useAuth } from "@/providers/auth-provider";
 import { useLanguage } from "@/providers/language-provider";
 import { Button } from "@/shared/ui/button";
@@ -49,7 +51,7 @@ export function LoginFormContainer() {
     } catch (err) {
       setError(
         err instanceof Error
-          ? err.message
+          ? translateApiError(err.message, t)
           : t("authLoginError"),
       );
     }
@@ -108,6 +110,14 @@ export function LoginFormContainer() {
             {errors.password ? (
               <p className="text-sm font-medium text-red-500 dark:text-red-400">{errors.password.message}</p>
             ) : null}
+            <div className="flex justify-end pt-1">
+              <Link
+                href={routes.public.forgotPassword}
+                className="text-sm font-medium text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)] hover:underline"
+              >
+                {t("authForgotPassword")}
+              </Link>
+            </div>
           </div>
           <Button type="submit" className="w-full py-3 text-base font-semibold" disabled={isSubmitting}>
             {isSubmitting ? t("authLoginLoading") : t("authLoginButton")}
